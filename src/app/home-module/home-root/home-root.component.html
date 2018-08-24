@@ -1,0 +1,4 @@
+<app-jumbotron [component]="'home'" [title]="'My Tasks'" [pageSummary]="'This page shows a list of all tasks and allows you to create, edit, and delete'"
+    [buttonText]="'Create Task'" (show)="showCreateForm($event)">
+</app-jumbotron>
+<app-to-do-list [showForm]="showForm" (close)="showForm = $event"></app-to-do-list>

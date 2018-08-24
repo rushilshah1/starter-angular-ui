@@ -1,0 +1,42 @@
+<body>
+  <app-form [showForm]="showForm" [formTitle]="formTitle" [editForm]="editForm" [preEditedTask]="preEditedTask" (close)="closeModal()"
+    (submit)="submitForm($event)"></app-form>
+  <div class="container">
+    <h2>All Tasks</h2>
+    <div class="row" style="padding-top: 25px">
+      <h4>Task Completion Progress: {{100*(completedTaskList.length/taskList.length) | number:'1.0-2'}}%</h4>
+      <mat-progress-bar mode="determinate" [value]="100*(completedTaskList.length/taskList.length)"></mat-progress-bar>
+    </div>
+    <div class="row">
+      <mat-card class="col-sm-12 col-md-5 col-lg-3" id="task" *ngFor="let task of taskList" [ngStyle]="{'border-color': task.completed ? 'primary' : 'red'}">
+        <mat-card-header>
+          <img mat-card-avatar *ngIf="task.completed" class="completed-image">
+          <img mat-card-avatar *ngIf="!task.completed" class="pending-image">
+          <mat-card-title *ngIf="task.completed" class="title">Completed Task</mat-card-title>
+          <mat-card-title *ngIf="!task.completed" class="title">Pending Task</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <label>Name:</label>
+          <a>{{task.name}}</a>
+          <br>
+          <label>Description:</label>
+          <a>{{task.description}}</a>
+          <br>          
+          <mat-chip-list >
+            <!-- <label>Status:</label> -->
+            <mat-chip class="status" *ngIf="task.completed" selected="true" color="primary"> COMPLETED </mat-chip>
+            <mat-chip class="status" *ngIf="!task.completed" selected="true" color="warn"> PENDING </mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button class="btn btn-outline-success" (click)="launchEditForm(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="btn btn-outline-danger" (click)="deleteTask(task.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</body>

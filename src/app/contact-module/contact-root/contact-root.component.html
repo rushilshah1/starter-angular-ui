@@ -1,0 +1,50 @@
+<app-jumbotron [component]="'contact'" [title]="'Contact Me'" [pageSummary]="'I\'d love to hear from you! Feel free to reach out to me via email!'"
+    [buttonText]="'Email Me'" (show)="sendEmail($event)"></app-jumbotron>
+<div>
+    <h3>Send Me Feedback!</h3>
+    <mat-horizontal-stepper linear="true" #stepper="matHorizontalStepper">
+        <mat-step [stepControl]="contactNameGroup">
+            <form [formGroup]="contactNameGroup">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field [floatLabel]="'always'">
+                    <input matInput placeholder="Name" formControlName="name" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="contactEmailGroup">
+            <form [formGroup]="contactEmailGroup">
+                <ng-template matStepLabel>Fill out your email</ng-template>
+                <mat-form-field [floatLabel]="'always'">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="contactMessageGroup">
+            <form [formGroup]="contactMessageGroup">
+                <ng-template matStepLabel>Write your message</ng-template>
+                <mat-form-field [floatLabel]="'always'">
+                    <textarea matInput placeholder="Write your message here" formControlName="message" required></textarea>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="submitFeedback()">Submit</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,4 @@
+div#myModal {
+    backdrop: 'static';
+    keyboard: false
+}

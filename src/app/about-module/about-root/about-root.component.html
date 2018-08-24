@@ -1,0 +1,12 @@
+<app-jumbotron [component]="'about'" [title]="'About Me'" [pageSummary]="'Hello! I\'m Rushil Shah and I am a senior at the University of Pittsburgh'"
+    [buttonText]="'See Picture'" (show)="displayImage($event)">
+</app-jumbotron>
+<div id="picture" *ngIf="showImage" >
+    <img [matTooltip]="caption" matTooltipPosition="below" src="https://pbs.twimg.com/profile_images/796103309287362560/RrTK6RrV_400x400.jpg"
+    [ngStyle]="{'width': picWidth+'px'}"
+    />
+    <div style="margin-top: 50px">
+        <h6>Change Picture Size</h6>
+        <mat-slider min="100" max="500" thumbLabel="true" [value]="picWidth" (input)="picWidth=$event.value"></mat-slider>
+    </div>
+</div>

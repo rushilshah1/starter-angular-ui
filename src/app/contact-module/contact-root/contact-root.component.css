@@ -1,0 +1,8 @@
+mat-form-field {
+    width: 500px;
+}
+textarea {
+    height: 500px;
+    max-width: 1000px;
+    max-height: 1000px;
+}
